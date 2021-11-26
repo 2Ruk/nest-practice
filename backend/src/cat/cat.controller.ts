@@ -11,10 +11,14 @@ export class CatController {
   create(@Body() createCatDto: CreateCatDto) {
     return this.catService.create(createCatDto);
   }
-
-  @Get()
+  @Get('/getList')
   findAll() {
     return this.catService.findAll();
+  }
+  @Post('/insert')
+  async insertCat(@Body() cat:CreateCatDto) {
+    return this.catService.insert(cat);
+
   }
 
   @Get(':id')

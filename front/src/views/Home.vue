@@ -35,7 +35,7 @@
         </b-col>
         <b-col cols="3">
           <b-input-group>
-            <b-button>제출</b-button>
+            <b-button @click="insertCat">등록</b-button>
           </b-input-group>
         </b-col>
       </b-row>
@@ -65,14 +65,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-
-interface CAT_TYPE {
-  _id?:string;
-  name: string;
-  age: number;
-  breed: string;
-  __v?:number;
-}
+import {CAT_TYPE , CAT_BACKEND} from "@/type/CAT";
 
 @Component({
   components: {
@@ -81,7 +74,7 @@ interface CAT_TYPE {
 export default class Home extends Vue {
 
   cat:CAT_TYPE
-  catList:CAT_TYPE[];
+  catList?:CAT_TYPE[];
 
   constructor() {
     super();
@@ -90,18 +83,40 @@ export default class Home extends Vue {
       age:0,
       breed:'',
     }
-    this.catList = [this.cat]
+    this.catList = []
   }
 
   async created(){
+    await this.getCatList();
+  }
+
+  async getCatList(){
 
     const {data}:{data:CAT_TYPE[]} = await Vue.axios({
-      url: '/cat',
+      url: CAT_BACKEND.GET_LIST,
       method: 'GET',
     });
+    this.catList = [];
+
     if(data){
       this.catList = data;
+    }else{
+      this.catList = [this.cat]
     }
+
+  }
+  async insertCat(){
+
+    const sendData = this.cat;
+
+    const { data } = await Vue.axios({
+      url: CAT_BACKEND.INSERT_CAT,
+      method: 'POST',
+      data:sendData
+    });
+    console.log(data);
+    await this.getCatList();
+
   }
 
 }

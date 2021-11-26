@@ -1,11 +1,13 @@
-import {Injectable} from '@nestjs/common';
+import {Injectable, UseFilters} from '@nestjs/common';
 import {CreateCatDto} from './dto/create-cat.dto';
 import {UpdateCatDto} from './dto/update-cat.dto';
 import {InjectModel} from "@nestjs/mongoose";
 import {Cat, CatDocument} from "../../COLLECTION_FEATURE/cat/schema/cat.schema";
 import {Model} from "mongoose";
+import {ShareFilter} from "../../COLLECTION_FEATURE/share.filter";
 
 @Injectable()
+@UseFilters(new ShareFilter())
 export class CatService {
   constructor(
       @InjectModel(Cat.name) private catModel: Model<CatDocument>
@@ -16,18 +18,28 @@ export class CatService {
   }
 
   async findAll() {
-
     const $match = {
       $match:{}
     }
-    try{
-      const result = await this.catModel.aggregate([
-        $match
-      ]).exec();
-      return result;
-    }catch (e) {
-      console.log(e.error)
-    }
+
+    const result = await this.catModel.aggregate([
+      $match
+    ]).exec();
+
+    if(!result) throw new Error('정보가 제대로 조회되지 않았습니다.')
+
+    return result;
+  }
+  async insert(cat){
+    console.log(cat);
+    if(!cat.name) throw new Error('이름이 입력되지 않았습니다.');
+
+    const insert = new this.catModel(cat).save();
+
+    if(!insert) throw new Error('정보가 제대로 등록되지 않았습니다.');
+
+    return true;
+
   }
 
   findOne(id: number) {
