@@ -2,17 +2,50 @@
   <div class="home">
     <b-jumbotron>
         <p class="h2">
-          TEST
+          LIST PAGE
         </p>
     </b-jumbotron>
     <div class="container">
+      <b-row class="p-3 mb-2">
+        <b-col cols="3">
+          <b-input-group>
+            <template  #prepend>
+              <b-button disabled variant="primary">이름</b-button>
+            </template>
+            <b-form-input type="text" v-model="cat.name"></b-form-input>
+          </b-input-group>
+        </b-col>
+        <b-col cols="3">
+          <b-input-group>
+            <template  #prepend>
+              <b-button disabled variant="info">
+                나이
+              </b-button>
+            </template>
+            <b-form-input type="number"  v-model="cat.age"></b-form-input>
+          </b-input-group>
+        </b-col>
+        <b-col cols="3">
+          <b-input-group>
+            <template  #prepend>
+              <b-button disabled variant="success">품종</b-button>
+            </template>
+            <b-form-input type="text" v-model="cat.breed"></b-form-input>
+          </b-input-group>
+        </b-col>
+        <b-col cols="3">
+          <b-input-group>
+            <b-button>제출</b-button>
+          </b-input-group>
+        </b-col>
+      </b-row>
       <b-table-simple>
         <b-thead>
           <b-tr>
-            <b-th>1</b-th>
-            <b-th>2</b-th>
-            <b-th>3</b-th>
-            <b-th>3</b-th>
+            <b-th>NO</b-th>
+            <b-th>이름</b-th>
+            <b-th>나이</b-th>
+            <b-th>품종</b-th>
           </b-tr>
         </b-thead>
         <b-tbody>
@@ -20,7 +53,7 @@
             <b-th>{{idx+1}}</b-th>
             <b-th>{{cat.name}}</b-th>
             <b-th>{{cat.age}}</b-th>
-            <b-th>{{cat.bread}}</b-th>
+            <b-th>{{cat.breed}}</b-th>
           </b-tr>
         </b-tbody>
       </b-table-simple>
@@ -37,7 +70,7 @@ interface CAT_TYPE {
   _id?:string;
   name: string;
   age: number;
-  bread: string;
+  breed: string;
   __v?:number;
 }
 
@@ -53,9 +86,9 @@ export default class Home extends Vue {
   constructor() {
     super();
     this.cat ={
-      name:'D',
+      name:'',
       age:0,
-      bread:'',
+      breed:'',
     }
     this.catList = [this.cat]
   }
