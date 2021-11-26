@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import {InjectModel} from "@nestjs/mongoose";
-import {Cat, CatDocument} from "../COLLECTION_FEATURE/cat/schema/cat.schema";
+import {Cat, CatDocument} from "../../COLLECTION_FEATURE/cat/schema/cat.schema";
 import {Model} from "mongoose";
 
 @Injectable()
@@ -18,7 +18,7 @@ export class UserService {
     const createCatDto = {
       name : '걸오',
       age : 6,
-      bread: '치즈태비'
+      breed: '치즈태비'
     }
     const createdCat = new this.catModel(createCatDto);
     return createdCat.save();

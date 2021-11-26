@@ -2,10 +2,11 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import {RouterModule, Routes} from "nest-router";
-import {MODULE_ALL, ROUTES} from "./COMMON_TYPE/ROUJTER";
+import {MODULE_ALL, ROUTES} from "../COMMON_TYPE/ROUJTER";
 import {MongooseModule} from "@nestjs/mongoose";
 import {ConfigModule, ConfigService} from "@nestjs/config";
-import {Cat, CatSchema} from "./COLLECTION_FEATURE/cat/schema/cat.schema";
+import {Cat, CatSchema} from "../COLLECTION_FEATURE/cat/schema/cat.schema";
+import { CatModule } from './cat/cat.module';
 
 
 
@@ -22,6 +23,7 @@ import {Cat, CatSchema} from "./COLLECTION_FEATURE/cat/schema/cat.schema";
       inject: [ConfigService],
     }),
     ...MODULE_ALL,
+    CatModule,
   ],
   controllers: [AppController],
   providers: [AppService],

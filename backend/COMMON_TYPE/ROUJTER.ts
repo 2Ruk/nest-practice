@@ -1,10 +1,10 @@
 import { Routes} from 'nest-router';
-import { UserModule } from "../user/user.module";
-import {TestModule} from "../test/test.module";
+import { UserModule } from "../src/user/user.module";
+import {CatModule} from "../src/cat/cat.module";
 
 export const MODULE_ALL = [
     UserModule,
-    TestModule
+    CatModule,
 ]
 export const ROUTES: Routes = []
 
