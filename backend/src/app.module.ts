@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import {HttpModule, Module} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import {RouterModule, Routes} from "nest-router";
@@ -7,6 +7,7 @@ import {MongooseModule} from "@nestjs/mongoose";
 import {ConfigModule, ConfigService} from "@nestjs/config";
 import {Cat, CatSchema} from "../COLLECTION_FEATURE/cat/schema/cat.schema";
 import { CatModule } from './cat/cat.module';
+import * as axios from "axios"
 
 
 
@@ -24,6 +25,13 @@ import { CatModule } from './cat/cat.module';
     }),
     ...MODULE_ALL,
     CatModule,
+    HttpModule.registerAsync({
+      useFactory: () => ({
+        timeout: 5000,
+        maxRedirects: 5,
+      }),
+    }),
+
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -5,6 +5,7 @@ import {CatModule} from "../src/cat/cat.module";
 export const MODULE_ALL = [
     UserModule,
     CatModule,
+
 ]
 export const ROUTES: Routes = []
 

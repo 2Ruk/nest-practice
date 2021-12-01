@@ -13,6 +13,15 @@ export class Cat {
 
     @Prop()
     breed: string;
+
+    @Prop({default: new Date()})
+    createDate: Date;
+
+    @Prop({default: new Date()})
+    updateDate: Date;
+
+    @Prop({default: false})
+    isDelete: boolean;
 }
 
 export const CatSchema = SchemaFactory.createForClass(Cat);

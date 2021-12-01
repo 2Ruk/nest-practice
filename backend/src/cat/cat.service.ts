@@ -7,7 +7,6 @@ import {Model} from "mongoose";
 import {ShareFilter} from "../../COLLECTION_FEATURE/share.filter";
 
 @Injectable()
-@UseFilters(new ShareFilter())
 export class CatService {
   constructor(
       @InjectModel(Cat.name) private catModel: Model<CatDocument>
@@ -30,11 +29,12 @@ export class CatService {
 
     return result;
   }
+
   async insert(cat){
     console.log(cat);
     if(!cat.name) throw new Error('이름이 입력되지 않았습니다.');
 
-    const insert = new this.catModel(cat).save();
+    const insert =await new this.catModel(cat).save();
 
     if(!insert) throw new Error('정보가 제대로 등록되지 않았습니다.');
 

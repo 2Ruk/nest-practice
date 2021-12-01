@@ -3,6 +3,9 @@ export interface CAT_TYPE {
     name: string;
     age: number;
     breed: string;
+    createDate?: Date;
+    updateDate?: Date;
+    isDelete?: boolean;
     __v?:number;
 }
 
