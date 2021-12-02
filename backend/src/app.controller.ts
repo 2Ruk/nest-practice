@@ -25,10 +25,11 @@ export class AppController {
     // });
 
     // const axios = require('axios')
-    // const {data} = await this.axios({
+    // const {data} = await axios({
     //   method : 'get',
     //   url : `https://www.naver.com`
     // });
+    // console.log(data);
     // console.log(data);
     // console.log(data)
     // // console.log(data)

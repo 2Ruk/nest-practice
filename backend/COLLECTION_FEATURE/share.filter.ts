@@ -19,7 +19,6 @@ export class ShareFilter implements ExceptionFilter {
                 ? exception.getStatus()
                 : HttpStatus.INTERNAL_SERVER_ERROR;
 
-        console.log('error');
         const message = exception.message;
 
         response.status(status).json({
