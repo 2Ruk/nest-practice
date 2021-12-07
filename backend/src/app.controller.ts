@@ -1,21 +1,20 @@
-import {Controller, Get, HttpService} from '@nestjs/common';
+import { Controller, Get, HttpService } from '@nestjs/common';
 import { AppService } from './app.service';
-
-
 
 @Controller()
 export class AppController {
   constructor(
-      private readonly appService: AppService,
-      private httpService: HttpService,
+    private readonly appService: AppService,
+    private httpService: HttpService,
   ) {}
 
   @Get()
-  async getDocs(){
+  async getDocs() {
+    const a = await this.appService.getHello();
 
-    const a = await this.appService.getHello()
+    console.log('a');
 
-
+    return 'hello';
 
     // const axios = require('axios')
     //
@@ -35,7 +34,4 @@ export class AppController {
     // // console.log(data)
     // }
   }
-
-
-
 }

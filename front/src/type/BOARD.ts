@@ -4,7 +4,6 @@ export interface BOARD_LIST {
     updateDate?:Date;
     title: string;
     writer: string;
-    breed: string;
     isDelete?: boolean;
 }
 
@@ -15,5 +14,4 @@ export interface BOARD extends BOARD_LIST{
 export const DEFAULT_BOARD_LIST:BOARD_LIST[] = [{
     title:'',
     writer:'',
-    breed:'',
 }]

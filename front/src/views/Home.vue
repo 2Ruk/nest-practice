@@ -57,8 +57,6 @@
           </b-tr>
         </b-tbody>
       </b-table-simple>
-      {{cat}}
-      {{catList}}
     </div>
   </div>
 </template>

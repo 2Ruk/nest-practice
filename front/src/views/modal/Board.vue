@@ -1,33 +1,42 @@
 <template>
-  <b-modal id="boardModal">
+  <b-modal scrollable  size="xl" id="boardModal">
     <template #modal-header="{ close }">
-      <!-- Emulate built in modal header close button action -->
-<!--      <b-button size="sm" variant="outline-danger" @click="close()">-->
-<!--        Close Modal-->
-<!--      </b-button>-->
       <h5>게시판 등록</h5>
     </template>
+    <template #default="{ cancel }">
+      <b-table-simple bordered fixed>
+        <b-tbody class="text-center">
+          <b-tr>
+            <b-th colspan="3">제목</b-th>
+            <b-td colspan="9">
+              <b-input type="text"></b-input>
+            </b-td>
+          </b-tr>
+          <b-tr>
+            <b-th colspan="3">작성자</b-th>
+            <b-td colspan="3">
+              <b-input type="text"></b-input>
+            </b-td>
+          </b-tr>
+          <b-tr>
+            <b-th colspan="12">내용</b-th>
+          </b-tr>
+          <b-tr>
+            <b-form-textarea>
 
-    <template #default="{ hide }">
-      <p>Modal Body with button</p>
-<!--      <b-button @click="hide()">Hide Modal</b-button>-->
+            </b-form-textarea>
+          </b-tr>
+        </b-tbody>
+      </b-table-simple>
     </template>
 
+
     <template #modal-footer="{ ok , cancel, hide }">
-      <b>Custom Footer</b>
+<!--      <b>작성 완료</b>-->
       <!-- Emulate built in modal footer ok and cancel button actions -->
       <b-button size="sm" variant="success" @click="writeBoard(ok)">
-        OK
+        작성 완료
       </b-button>
-<!--      <b-button size="sm" variant="danger" @click="cancel()">-->
-<!--        Cancel-->
-<!--      </b-button>-->
-
-      <!-- Button with custom close trigger value -->
-<!--      <b-button size="sm" variant="outline-secondary" @click="hide('forget')">-->
-<!--        Forget it-->
-<!--      </b-button>-->
-
     </template>
   </b-modal>
 </template>

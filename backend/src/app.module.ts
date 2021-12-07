@@ -1,15 +1,13 @@
-import {HttpModule, Module} from '@nestjs/common';
+import { HttpModule, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import {RouterModule, Routes} from "nest-router";
-import {MODULE_ALL, ROUTES} from "../COMMON_TYPE/ROUJTER";
-import {MongooseModule} from "@nestjs/mongoose";
-import {ConfigModule, ConfigService} from "@nestjs/config";
-import {Cat, CatSchema} from "../COLLECTION_FEATURE/cat/schema/cat.schema";
+import { RouterModule, Routes } from 'nest-router';
+import { MODULE_ALL, ROUTES } from './COMMON_TYPE/ROUJTER';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { Cat, CatSchema } from './COLLECTION_FEATURE/cat/schema/cat.schema';
 import { CatModule } from './cat/cat.module';
-import * as axios from "axios"
-
-
+import * as axios from 'axios';
 
 @Module({
   imports: [
@@ -19,7 +17,7 @@ import * as axios from "axios"
       imports: [ConfigModule],
       connectionName: 'Cat',
       useFactory: () => ({
-        uri:'mongodb+srv://hychoi:2613@hy.lgpix.mongodb.net/Cat',
+        uri: 'mongodb+srv://hychoi:2613@hy.lgpix.mongodb.net/Cat',
       }),
       inject: [ConfigService],
     }),
@@ -31,7 +29,6 @@ import * as axios from "axios"
         maxRedirects: 5,
       }),
     }),
-
   ],
   controllers: [AppController],
   providers: [AppService],

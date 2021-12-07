@@ -34,9 +34,9 @@
           <b-tr>
             <b-th width="10%">NO</b-th>
             <b-th width="40%">TITLE</b-th>
-            <b-th width="15%">WRITER</b-th>
-            <b-th width="20%">BREED</b-th>
-            <b-th width="15%">WRITE DATE</b-th>
+            <b-th width="25%">WRITER</b-th>
+<!--            <b-th width="20%">BREED</b-th>-->
+            <b-th width="25%">WRITE DATE</b-th>
           </b-tr>
         </b-thead>
         <b-tbody v-if="boardList.length">
@@ -44,7 +44,7 @@
             <b-td>{{idx}}</b-td>
             <b-td>{{board.title}}</b-td>
             <b-td>{{board.writer}}</b-td>
-            <b-td>{{board.breed}}</b-td>
+<!--            <b-td>{{board.breed}}</b-td>-->
             <b-td>{{board.createDate}}</b-td>
           </b-tr>
         </b-tbody>
@@ -81,6 +81,7 @@ export default class BoardList extends Vue{
   async writeBoard(){
     console.log('a');
   }
+
 }
 
 </script>
