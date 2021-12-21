@@ -20,14 +20,16 @@ export class CatController {
 
   @Post()
   create(@Body() createCatDto: CreateCatDto) {
+    console.log(createCatDto)
     return this.catService.create(createCatDto);
   }
-  @Get('/getList')
+  @Get('/list')
   findAll() {
     return this.catService.findAll();
   }
   @Post('/insert')
   async insertCat(@Body() cat: CreateCatDto) {
+    console.log(cat)
     return this.catService.insert(cat);
   }
 
@@ -41,8 +43,9 @@ export class CatController {
     return this.catService.update(+id, updateCatDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.catService.remove(+id);
+  @Delete('')
+  remove(@Body() body) {
+    return this.catService.remove(body);
+
   }
 }

@@ -20,13 +20,13 @@ export class CatService {
 
   async findAll() {
     const $match = {
-      $match: {},
+      $match: {
+        isDelete:false
+      },
     };
 
     const result = await this.catModel.aggregate([$match]).exec();
-
     if (!result) throw new Error('정보가 제대로 조회되지 않았습니다.');
-
     return result;
   }
 
@@ -34,9 +34,7 @@ export class CatService {
     if (!cat.name) throw new Error(CAT_ERROR.NO_NAME);
     if (!cat.age) throw new Error(CAT_ERROR.NO_AGE);
     if (!cat.breed) throw new Error(CAT_ERROR.NO_BREED);
-
     const insert = await new this.catModel(cat).save();
-
     if (!insert) throw new Error('정보가 제대로 등록되지 않았습니다.');
 
     return true;
@@ -50,7 +48,13 @@ export class CatService {
     return `This action updates a #${id} cat`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} cat`;
+  async remove(cat) {
+    // const result = await this.catModel.findOne({_id:cat._id}).exec();
+    await this.catModel.updateOne(
+        {_id:cat._id},
+        {$set:{isDelete:true}}
+    ).exec();
+    return true;
+    // return `This action removes a #${id} cat`;
   }
 }

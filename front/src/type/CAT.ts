@@ -10,6 +10,8 @@ export interface CAT_TYPE {
 }
 
 export enum CAT_BACKEND {
-    GET_LIST = '/cat/getList',
-    INSERT_CAT = '/cat/insert'
+    GET_LIST = '/cat/list',
+    INSERT_CAT = '/cat/insert',
+    UPDATE_CAT = '/cat',
+    DELETE_CAT = '/cat'
 }

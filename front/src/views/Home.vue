@@ -39,21 +39,34 @@
           </b-input-group>
         </b-col>
       </b-row>
-      <b-table-simple>
+      <b-table-simple fixed>
         <b-thead>
           <b-tr>
             <b-th>NO</b-th>
             <b-th>이름</b-th>
             <b-th>나이</b-th>
             <b-th>품종</b-th>
+            <b-th>other</b-th>
           </b-tr>
         </b-thead>
         <b-tbody>
           <b-tr v-for="(cat,idx) in catList" :key="`value${cat._id}${idx}`">
-            <b-th>{{idx+1}}</b-th>
-            <b-th>{{cat.name}}</b-th>
-            <b-th>{{cat.age}}</b-th>
-            <b-th>{{cat.breed}}</b-th>
+            <b-th>
+              {{idx+1}}
+            </b-th>
+            <b-th>
+              <b-form-input type="text"  v-model="cat.name"/>
+            </b-th>
+            <b-th>
+              <b-form-input type="text"  v-model="cat.age"/>
+            </b-th>
+            <b-th>
+              <b-form-input type="text"  v-model="cat.breed"/>
+            </b-th>
+            <b-th class="d-flex justify-content-center">
+              <b-button @click="updateCat(cat,$event.target)">수정</b-button>&nbsp;
+              <b-button @click="deleteCat(cat)">삭제</b-button>
+            </b-th>
           </b-tr>
         </b-tbody>
       </b-table-simple>
@@ -69,7 +82,7 @@ import {CAT_TYPE , CAT_BACKEND} from "@/type/CAT";
   components: {
   },
 })
-export default class Home extends Vue {
+export default class CatPage extends Vue {
 
   cat:CAT_TYPE
   catList?:CAT_TYPE[];
@@ -95,7 +108,6 @@ export default class Home extends Vue {
       method: 'GET',
     });
     this.catList = [];
-
     if(data){
       this.catList = data;
     }else{
@@ -104,18 +116,39 @@ export default class Home extends Vue {
 
   }
   async insertCat(){
-
     const sendData = this.cat;
-
     const { data } = await Vue.axios({
       url: CAT_BACKEND.INSERT_CAT,
       method: 'POST',
       data:sendData
     });
+    this.cat ={
+      name:'',
+      age:0,
+      breed:'',
+    }
+    await this.getCatList();
+  }
+
+  async updateCat(cat:CAT_TYPE,eve:any){
+    console.log(cat)
+    console.log(eve.parentNode.previousSibling);
+  }
+
+  async deleteCat(cat:CAT_TYPE){
+    const sendData = {
+      ...cat
+    };
+
+    const { data } = await Vue.axios({
+      url: CAT_BACKEND.DELETE_CAT,
+      method: 'delete',
+      data:sendData
+    });
     console.log(data);
     await this.getCatList();
-
   }
+
 
 }
 </script>
