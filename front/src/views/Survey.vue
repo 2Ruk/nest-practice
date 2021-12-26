@@ -51,8 +51,6 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import {optionValue, surveyContent, SurveyType} from "@/type/Survey";
-import {CAT_BACKEND} from "@/type/CAT";
-
 
 @Component({
   components: {

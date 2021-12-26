@@ -8,8 +8,9 @@ export class QuestionController {
   constructor(private readonly questionService: QuestionService) {}
 
   @Post()
-  create(@Body() createQuestionDto: CreateQuestionDto) {
-    return this.questionService.create(createQuestionDto);
+  create(@Body('Question') Question) {
+    console.log(Question);
+    return this.questionService.create(Question);
   }
 
   @Get()

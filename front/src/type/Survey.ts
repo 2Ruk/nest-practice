@@ -10,9 +10,7 @@ export namespace SurveyType {
         value: string,
     };
 
-    export type QuestionType  = Partial<questionProp>
     export type QuestionList  = Partial<questionProp[]>
-
     export type options = Partial<optionProp[]>;
 
 

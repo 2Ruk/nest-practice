@@ -4,6 +4,10 @@ import { UpdateQuestionDto } from './dto/update-question.dto';
 
 @Injectable()
 export class QuestionService {
+
+  //TODO : LIST DB에 저장
+  //TODO : STATUS COMPLETE 으로 저장할 것
+  //TODO : BATCH DB에 저장 ( ANSWER 값만 저장하는 용도 )
   create(createQuestionDto: CreateQuestionDto) {
     return 'This action adds a new question';
   }
