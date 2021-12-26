@@ -7,6 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Cat, CatSchema } from './COLLECTION_FEATURE/cat/schema/cat.schema';
 import { CatModule } from './cat/cat.module';
+import { QuestionModule } from './question/question.module';
 import * as axios from 'axios';
 
 @Module({
@@ -29,6 +30,7 @@ import * as axios from 'axios';
         maxRedirects: 5,
       }),
     }),
+    QuestionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

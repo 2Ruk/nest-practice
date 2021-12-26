@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Chart from "@/views/Chart.vue";
 import CatPage from "@/views/Home.vue";
+import Survey from "@/views/Survey.vue";
+import BoardList from "@/views/BoardList.vue";
 
 Vue.use(VueRouter)
 
@@ -14,10 +16,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/BoardList',
     name: 'BoardList',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/BoardList.vue')
+    component: BoardList,
   },
   {
     path: '/chart',
@@ -29,6 +28,12 @@ const routes: Array<RouteConfig> = [
     name : 'Chart1',
     component: Chart,
     props: true
+  },
+  {
+    path: '/Survey',
+    name: 'Survey',
+    component: Survey,
+
   }
 ]
 

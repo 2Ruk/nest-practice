@@ -26,6 +26,7 @@ export class CatService {
     };
 
     const result = await this.catModel.aggregate([$match]).exec();
+    console.log(result);
     if (!result) throw new Error('정보가 제대로 조회되지 않았습니다.');
     return result;
   }
