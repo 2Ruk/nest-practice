@@ -3,14 +3,13 @@ import { QuestionService } from './question.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
 
-@Controller('question')
+@Controller()
 export class QuestionController {
   constructor(private readonly questionService: QuestionService) {}
 
   @Post()
-  create(@Body('Question') Question) {
-    console.log(Question);
-    return this.questionService.create(Question);
+  create(@Body('Question') question) {
+    return this.questionService.create(question);
   }
 
   @Get()

@@ -6,11 +6,14 @@ import {
   SchemaFactory,
 } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import {SurveyType} from "../../../COMMON_TYPE/Survey";
 
-export type CatDocument = Question & Document;
+export type QuestionDocument = Question & Document;
 
 @Schema()
 export class Question {
+  @Prop()
+  questions: SurveyType.QuestionList;
 
   @Prop({ default: new Date() })
   createDate: Date;

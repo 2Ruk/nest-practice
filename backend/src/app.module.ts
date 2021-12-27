@@ -22,15 +22,21 @@ import * as axios from 'axios';
       }),
       inject: [ConfigService],
     }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      connectionName: 'Question',
+      useFactory: () => ({
+        uri: 'mongodb+srv://hychoi:2613@hy.lgpix.mongodb.net/Cat',
+      }),
+      inject: [ConfigService],
+    }),
     ...MODULE_ALL,
-    CatModule,
     HttpModule.registerAsync({
       useFactory: () => ({
         timeout: 5000,
         maxRedirects: 5,
       }),
     }),
-    QuestionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

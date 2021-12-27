@@ -41,8 +41,7 @@ export class CatService {
     return true;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} cat`;
+  findOne(id: number) {return `This action returns a #${id} cat`;
   }
 
   update(id: number, updateCatDto: UpdateCatDto) {
