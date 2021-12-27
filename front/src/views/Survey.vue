@@ -16,7 +16,7 @@
               <b-row>
                 <b-col cols="12" class="p-5 question-desc">
                   <p class="h5">
-                    {{idx+1}}. {{question.desc}}
+                    {{question.qName }}. {{question.desc}}
                   </p>
                 </b-col>
               </b-row>
@@ -62,13 +62,10 @@ export default class Survey extends Vue {
 
   constructor() {
     super();
-
     this.optionsComplete = [
       ...optionValue
     ];
     this.questions = [...surveyContent]
-
-
   }
 
   async created(){

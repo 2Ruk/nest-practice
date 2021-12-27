@@ -12,6 +12,7 @@ export type QuestionDocument = Question & Document;
 
 @Schema()
 export class Question {
+
   @Prop()
   questions: SurveyType.QuestionList;
 
