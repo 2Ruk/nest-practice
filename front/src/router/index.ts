@@ -1,10 +1,9 @@
 import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
-import Chart from "@/views/Chart.vue";
+import VueRouter, {RouteConfig} from 'vue-router'
+import ChartPage from "@/views/Chart.vue";
 import CatPage from "@/views/Home.vue";
 import Survey from "@/views/Survey.vue";
 import BoardList from "@/views/BoardList.vue";
-import ChartPage from "@/views/Chart.vue";
 
 Vue.use(VueRouter)
 
@@ -22,7 +21,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/chart',
     name: 'Chart',
-    component: Chart
+    component: ChartPage
   },
   {
     path:'/chart/:id',
