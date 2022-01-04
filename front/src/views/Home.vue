@@ -75,8 +75,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import {CAT_TYPE , CAT_BACKEND} from "@/type/CAT";
+import {Component, Vue} from 'vue-property-decorator';
+import {CAT_BACKEND, CAT_TYPE} from "@/type/CAT";
 
 @Component({
   components: {
@@ -103,7 +103,7 @@ export default class CatPage extends Vue {
 
   async getCatList(){
 
-    const {data}:{data:CAT_TYPE[]} = await Vue.axios({
+    const { data }:{ data: CAT_TYPE[] } = await Vue.axios({
       url: CAT_BACKEND.GET_LIST,
       method: 'GET',
     });
@@ -130,9 +130,9 @@ export default class CatPage extends Vue {
     await this.getCatList();
   }
 
-  async updateCat(cat:CAT_TYPE,eve:any){
-    console.log(cat)
-    console.log(eve.parentNode.previousSibling);
+  async updateCat(cat:CAT_TYPE,eve:HTMLElement){
+    console.dir(eve.innerHTML)
+    // console.log(eve.parentNode.previousSibling);
   }
 
   async deleteCat(cat:CAT_TYPE){

@@ -1,8 +1,8 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import axios, {AxiosInstance} from 'axios';
 import Vuex from '../store';
-import router from '@/router/index'
 import Vue from 'vue';
-const baseURL:string = '/api';
+
+const baseURL: string = '/api';
 
 const instance :AxiosInstance  = axios.create({
     baseURL,
@@ -13,8 +13,8 @@ const instance :AxiosInstance  = axios.create({
 })
 
 instance.interceptors.request.use(config  => {
-        const token = Vuex.getters.getAccessToken;
-        if(token) config.headers['Authorization'] = `Bearer ${token}`;
+    const token = Vuex.getters.getAccessToken;
+    if(token) config.headers['Authorization'] = `Bearer ${token}`;
 
     return config;
 })
@@ -22,7 +22,6 @@ instance.interceptors.request.use(config  => {
 instance.interceptors.response.use(response => {
     const {data} = response
     const {result, error} = data
-
     return response
 }, error => {
     const {response} = error

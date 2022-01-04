@@ -1,18 +1,14 @@
-import { HttpModule, Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { RouterModule, Routes } from 'nest-router';
-import { MODULE_ALL, ROUTES } from './COMMON_TYPE/ROUJTER';
-import { MongooseModule } from '@nestjs/mongoose';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { Cat, CatSchema } from './COLLECTION_FEATURE/cat/schema/cat.schema';
-import { CatModule } from './cat/cat.module';
-import { QuestionModule } from './question/question.module';
-import * as axios from 'axios';
+import {HttpModule, Module} from '@nestjs/common';
+import {AppController} from './app.controller';
+import {AppService} from './app.service';
+import {MODULE_ALL} from './COMMON_TYPE/ROUJTER';
+import {MongooseModule} from '@nestjs/mongoose';
+import {ConfigModule, ConfigService} from '@nestjs/config';
+import {Cat} from './COLLECTION_FEATURE/cat/schema/cat.schema';
 
 @Module({
   imports: [
-    RouterModule.forRoutes(ROUTES),
+    // RouterModule.forRoutes(ROUTES),
     // MongooseModule.forRoot('mongodb+srv://manager_user:w3iYAKK7Hnix5eK@hy.lgpix.mongodb.net/Cat'),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -25,6 +21,14 @@ import * as axios from 'axios';
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       connectionName: 'Question',
+      useFactory: () => ({
+        uri: 'mongodb+srv://hychoi:2613@hy.lgpix.mongodb.net/Cat',
+      }),
+      inject: [ConfigService],
+    }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      connectionName: 'Answer',
       useFactory: () => ({
         uri: 'mongodb+srv://hychoi:2613@hy.lgpix.mongodb.net/Cat',
       }),

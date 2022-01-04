@@ -11,7 +11,7 @@ export interface BOARD extends BOARD_LIST{
     content: string;
 }
 
-export const DEFAULT_BOARD_LIST:BOARD_LIST[] = [{
+export const DEFAULT_BOARD_LIST: BOARD_LIST[] = [{
     title:'',
     writer:'',
 }]

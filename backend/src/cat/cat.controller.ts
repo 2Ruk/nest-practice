@@ -1,19 +1,10 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  UseFilters,
-} from '@nestjs/common';
-import { CatService } from './cat.service';
-import { CreateCatDto } from './dto/create-cat.dto';
-import { UpdateCatDto } from './dto/update-cat.dto';
-import { ShareFilter } from '../COLLECTION_FEATURE/share.filter';
+import {Body, Controller, Delete, Get, Param, Patch, Post, UseFilters,} from '@nestjs/common';
+import {CatService} from './cat.service';
+import {CreateCatDto} from './dto/create-cat.dto';
+import {UpdateCatDto} from './dto/update-cat.dto';
+import {ShareFilter} from '../COLLECTION_FEATURE/share.filter';
 
-@Controller()
+@Controller('cat')
 @UseFilters(new ShareFilter())
 export class CatController {
   constructor(private readonly catService: CatService) {}
@@ -25,7 +16,7 @@ export class CatController {
   }
   @Get('/list')
   findAll() {
-    return this.catService.findAll();
+    return this.catService.findAll()  ;
   }
   @Post('/insert')
   async insertCat(@Body() cat: CreateCatDto) {
