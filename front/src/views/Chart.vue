@@ -21,9 +21,30 @@ export default class ChartPage extends Vue {
   $refs!: {
     myChart: HTMLCanvasElement
   }
+  chartData: number[];
+  chartLabel: string[];
   constructor() {
     super();
+    this.chartData = [];
+    this.chartLabel = [];
   }
+  async created(){
+    await this.getChartData();
+    await this.draw();
+  }
+
+  async getChartData(){
+    const { data } = await Vue.axios({
+      url: 'question',
+      method: 'get',
+    });
+    const {_id, ...chartData} = data.chartData;
+    for(const questionAVG of Object.keys(chartData)){
+      this.chartLabel.push(questionAVG);
+      this.chartData.push(chartData[questionAVG]);
+    }
+  }
+
 
 
   async draw() {
@@ -32,17 +53,16 @@ export default class ChartPage extends Vue {
     const options: ChartConfiguration = {
       type: 'bar',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels:this.chartLabel,
         datasets: [{
           label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
+          data: this.chartData,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
             'rgba(255, 206, 86, 0.2)',
             'rgba(75, 192, 192, 0.2)',
             'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
           ],
           borderColor: [
             'rgba(255, 99, 132, 1)',
@@ -50,18 +70,14 @@ export default class ChartPage extends Vue {
             'rgba(255, 206, 86, 1)',
             'rgba(75, 192, 192, 1)',
             'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
           ],
-          borderWidth: 1
         }]
       },
       options: {
         responsive:false,
       }
     }
-    // new Chart(ctx,options)
     await this.drawChart(ctx,options);
-
   }
 
   async drawChart(canvas: HTMLCanvasElement,options: ChartConfiguration){

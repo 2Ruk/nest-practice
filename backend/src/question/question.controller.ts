@@ -7,13 +7,17 @@ export class QuestionController {
   constructor(private readonly questionService: QuestionService) {}
 
   @Post()
-  create(@Body('Question') question) {
+  create(@Body('Question') question, @Body() body) {
     return this.questionService.create(question);
   }
 
   @Get()
-  findAll() {
-    return this.questionService.findAll();
+  async findAll() {
+
+    return {
+      result: true,
+      chartData: await this.questionService.findAll()
+    };
   }
 
   @Get(':id')
