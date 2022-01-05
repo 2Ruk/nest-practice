@@ -45,8 +45,6 @@ export default class ChartPage extends Vue {
     }
   }
 
-
-
   async draw() {
     const ctx = this.$refs.myChart.getContext('2d') as unknown as HTMLCanvasElement;
 
