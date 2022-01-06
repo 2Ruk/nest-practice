@@ -1,7 +1,7 @@
-import { Module } from '@nestjs/common';
-import { CatService } from './cat.service';
-import { CatController } from './cat.controller';
-import { CatFeature } from '../COLLECTION_FEATURE/cat/cat.feature';
+import {Module} from '@nestjs/common';
+import {CatService} from './cat.service';
+import {CatController} from './cat.controller';
+import {CatFeature} from '../lib/COLLECTION_FEATURE/cat/cat.feature';
 
 @Module({
   controllers: [CatController],

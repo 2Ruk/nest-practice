@@ -3,14 +3,16 @@ import {CreateQuestionDto} from './dto/create-question.dto';
 import {UpdateQuestionDto} from './dto/update-question.dto';
 import {InjectModel} from "@nestjs/mongoose";
 import {Model} from "mongoose";
-import {Question, QuestionDocument} from "../COLLECTION_FEATURE/question/schema/question.schema";
-import {Answer, AnswerDocument} from "../COLLECTION_FEATURE/answer/schema/answer.schema";
+import {Question, QuestionDocument} from "../lib/COLLECTION_FEATURE/question/schema/question.schema";
+import {Answer, AnswerDocument} from "../lib/COLLECTION_FEATURE/answer/schema/answer.schema";
+import {CommonService} from "../lib/common/common.service";
 
 @Injectable()
 export class QuestionService {
   constructor(
       @InjectModel(Question.name) private questionModel: Model<QuestionDocument>,
       @InjectModel(Answer.name) private answerModel: Model<AnswerDocument>,
+      private commonService: CommonService
   ) {}
 
   async answerBatchCreate(createQuestionDto: CreateQuestionDto[]):Promise<Partial<Answer>>{
@@ -22,9 +24,11 @@ export class QuestionService {
       status: 'complete',
       userId: 'tester',
     }
+
     for(const question of createQuestionDto){
       answer[question.qName]  = question.answer
     }
+
     return answer;
   }
 
@@ -37,6 +41,7 @@ export class QuestionService {
   }
 
   async findAll() {
+    await this.commonService.test();
     const $group = {
       _id:'$status',
       Q1: {$avg:{$multiply:[{$toInt:"$Q1"},20]}},

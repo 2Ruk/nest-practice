@@ -4,12 +4,10 @@ import {AppService} from './app.service';
 import {MODULE_ALL} from './COMMON_TYPE/ROUJTER';
 import {MongooseModule} from '@nestjs/mongoose';
 import {ConfigModule, ConfigService} from '@nestjs/config';
-import {Cat} from './COLLECTION_FEATURE/cat/schema/cat.schema';
+import {Cat} from './lib/COLLECTION_FEATURE/cat/schema/cat.schema';
 
 @Module({
   imports: [
-    // RouterModule.forRoutes(ROUTES),
-    // MongooseModule.forRoot('mongodb+srv://manager_user:w3iYAKK7Hnix5eK@hy.lgpix.mongodb.net/Cat'),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       connectionName: 'Cat',

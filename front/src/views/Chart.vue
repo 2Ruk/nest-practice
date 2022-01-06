@@ -1,9 +1,43 @@
 <template>
   <div>
-    <b-container>
-      <canvas ref="myChart" width="400" height="400"></canvas>
-      <b-button @click="draw">생성</b-button>
-    </b-container>
+    <b-jumbotron bg-variant="light">
+      <template #header>REPORT PAGE</template>
+      <template #lead>
+        <b-container class="border p-5">
+          <b-row>
+            <b-col cols="7">
+              <b-table-simple fixed bordered small>
+                <b-thead>
+                  <b-tr>
+                    <b-th width="15%">문항명</b-th>
+                    <b-th width="60%">상세</b-th>
+                    <b-th width="25%">응답 평균치</b-th>
+                  </b-tr>
+                </b-thead>
+                <b-tbody v-if="!isPending">
+                  <b-tr v-for="(val,idx) in tableData" :key="val.description+idx">
+                    <b-td>{{val.qName}}</b-td>
+                    <b-td>{{val.description}}</b-td>
+                    <b-td>{{val.questionAvg}}%</b-td>
+                  </b-tr>
+                </b-tbody>
+                <b-tbody v-else>
+                  <b-tr v-for="i in 4" :key="`skeleton_${i}`">
+                    <b-td><b-skeleton/></b-td>
+                    <b-td><b-skeleton/></b-td>
+                    <b-td><b-skeleton/></b-td>
+                  </b-tr>
+                </b-tbody>
+              </b-table-simple>
+            </b-col>
+            <b-col cols="5">
+              <canvas v-if="!isPending" class="text-center" ref="myChart" width="400" height="400"></canvas>
+              <b-skeleton-img v-else width="400" height="400"></b-skeleton-img>
+            </b-col>
+          </b-row>
+        </b-container>
+      </template>
+    </b-jumbotron>
   </div>
 </template>
 
@@ -23,16 +57,33 @@ export default class ChartPage extends Vue {
   }
   chartData: number[];
   chartLabel: string[];
+  chartQuestionDescription: string[];
+  tableData: {qName:string, description:string, questionAvg:number}[];
+  isPending: boolean;
+
   constructor() {
     super();
     this.chartData = [];
     this.chartLabel = [];
+    this.chartQuestionDescription = ['2021년 목표를 설정하였나요?','2021년 목표를 달성하셨나요?','행복한 2021년 이였나요?','2022년 계획을 설정하였나요?'];;
+    this.tableData = [];
+    this.isPending = true;
   }
   async created(){
     await this.getChartData();
     await this.draw();
+    await this.tableDataSet();
   }
-
+  async tableDataSet(){
+    this.chartLabel.forEach((value,idx)=>{
+      const chartData:{qName:string, description:string, questionAvg:number} = {
+        qName: value,
+        description: this.chartQuestionDescription[idx],
+        questionAvg: +this.chartData[idx].toFixed(2),
+      }
+      this.tableData.push(chartData)
+    })
+  }
   async getChartData(){
     const { data } = await Vue.axios({
       url: 'question',
@@ -43,6 +94,7 @@ export default class ChartPage extends Vue {
       this.chartLabel.push(questionAVG);
       this.chartData.push(chartData[questionAVG]);
     }
+    this.isPending = false;
   }
 
   async draw() {

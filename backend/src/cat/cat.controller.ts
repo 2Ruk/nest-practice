@@ -2,7 +2,7 @@ import {Body, Controller, Delete, Get, Param, Patch, Post, UseFilters,} from '@n
 import {CatService} from './cat.service';
 import {CreateCatDto} from './dto/create-cat.dto';
 import {UpdateCatDto} from './dto/update-cat.dto';
-import {ShareFilter} from '../COLLECTION_FEATURE/share.filter';
+import {ShareFilter} from '../lib/COLLECTION_FEATURE/share.filter';
 
 @Controller('cat')
 @UseFilters(new ShareFilter())
