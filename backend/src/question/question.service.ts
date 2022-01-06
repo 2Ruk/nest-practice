@@ -15,7 +15,7 @@ export class QuestionService {
       private commonService: CommonService
   ) {}
 
-  async answerBatchCreate(createQuestionDto: CreateQuestionDto[]):Promise<Partial<Answer>>{
+  async answerBatchCreate(createQuestionDto: CreateQuestionDto[]){
     const answer: Partial<Answer> = {
       Q1: '',
       Q2: '',

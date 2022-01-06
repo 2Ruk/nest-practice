@@ -1,11 +1,5 @@
-import {
-  AsyncModelFactory,
-  MongooseModule,
-  Prop,
-  Schema,
-  SchemaFactory,
-} from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import {AsyncModelFactory, Prop, Schema, SchemaFactory,} from '@nestjs/mongoose';
+import {Document} from 'mongoose';
 
 export type CatDocument = Cat & Document;
 

@@ -13,7 +13,6 @@ export class QuestionController {
 
   @Get()
   async findAll() {
-
     return {
       result: true,
       chartData: await this.questionService.findAll()

@@ -32,12 +32,12 @@ import {Cat} from './lib/COLLECTION_FEATURE/cat/schema/cat.schema';
       }),
       inject: [ConfigService],
     }),
-    ...MODULE_ALL,
     HttpModule.registerAsync({
       useFactory: () => ({
         timeout: 5000,
         maxRedirects: 5,
       }),
+      ...MODULE_ALL,
     }),
   ],
   controllers: [AppController],

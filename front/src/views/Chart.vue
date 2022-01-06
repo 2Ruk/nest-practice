@@ -1,7 +1,9 @@
 <template>
   <div>
     <b-jumbotron bg-variant="light">
-      <template #header>REPORT PAGE</template>
+      <template #header>
+        <p>REPORT PAGE</p>
+      </template>
       <template #lead>
         <b-container class="border p-5">
           <b-row>
