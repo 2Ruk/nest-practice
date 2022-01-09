@@ -8,8 +8,8 @@ import {Model} from 'mongoose';
 @Injectable()
 export class UserService {
   constructor(@InjectModel(Cat.name) private catModel: Model<CatDocument>) {}
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  async create(createUserDto: CreateUserDto):Promise<{str:string, message: string}> {
+    return {str:'',message:''}
   }
 
   findAll() {
