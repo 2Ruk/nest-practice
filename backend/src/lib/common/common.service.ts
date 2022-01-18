@@ -11,6 +11,6 @@ export class CommonService {
 
     async test(){
         // const result = await this.answerModel.find({}).exec();
-        console.log('common service 접근')
+        // console.log('common service 접근')
     }
 }

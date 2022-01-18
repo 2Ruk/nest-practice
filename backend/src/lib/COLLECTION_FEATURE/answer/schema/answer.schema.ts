@@ -24,13 +24,13 @@ export class Answer {
   Q4: string;
 
 
-  @Prop({ default: new Date() })
+  @Prop({default: new Date()})
   createDate: Date;
 
-  @Prop({ default: new Date() })
+  @Prop({default: new Date()})
   updateDate: Date;
 
-  @Prop({ default: false })
+  @Prop({default: false })
   isDelete: boolean;
 }
 

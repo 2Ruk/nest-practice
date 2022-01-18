@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator';
+import {Component, Ref, Vue} from 'vue-property-decorator';
 import {Chart, ChartConfiguration, registerables} from 'chart.js';
 
 Chart.register(...registerables);
@@ -54,14 +54,18 @@ Chart.register(...registerables);
   },
 })
 export default class ChartPage extends Vue {
-  $refs!: {
-    myChart: HTMLCanvasElement
+  // $refs!: {
+  //   myChart: HTMLCanvasElement
+  // }
+  test(t:string='0'){
+
   }
+  @Ref() myChart!:  HTMLCanvasElement;
   chartData: number[];
   chartLabel: string[];
   chartQuestionDescription: string[];
   tableData: {qName:string, description:string, questionAvg:number}[];
-  isPending: boolean;
+  isPending: boolean
 
   constructor() {
     super();
@@ -100,7 +104,7 @@ export default class ChartPage extends Vue {
   }
 
   async draw() {
-    const ctx = this.$refs.myChart.getContext('2d') as unknown as HTMLCanvasElement;
+    const ctx = this.myChart.getContext('2d') as unknown as HTMLCanvasElement;
 
     const options: ChartConfiguration = {
       type: 'bar',

@@ -14,7 +14,11 @@ export namespace SurveyType {
     export type QuestionList  = Partial<questionProp[]>
     export type options = Partial<optionProp[]>;
 
+    // export type QuestionTest = Pick<questionProp,"answer"|"desc"|"qName">;
 }
+
+
+
 
 export const surveyContent:SurveyType.QuestionList = [
     {qName:'Q1', answer: '', desc: '2021년 목표를 설정하였나요?', description: '당신이 설정한 목표를 0~100% 사이로 응답해주세요.'},
