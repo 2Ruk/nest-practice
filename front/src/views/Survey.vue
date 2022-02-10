@@ -1,5 +1,6 @@
 <template>
   <div>
+    <TopBar/>
     <b-container>
       <b-jumbotron class="text-left">
         <h4>안녕하십니까, 21년 연말 만족도 조사를 실시하겠습니다.</h4>
@@ -49,11 +50,13 @@
 </template>`
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import {Component, Vue} from 'vue-property-decorator';
 import {optionValue, surveyContent, SurveyType} from "@/type/Survey";
+import TopBar from "@/components/common/TopBar.vue";
 
 @Component({
   components: {
+    TopBar
   },
 })
 export default class Survey extends Vue {

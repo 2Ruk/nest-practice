@@ -1,5 +1,6 @@
 <template>
   <div class="about">
+    <TopBar/>
     <b-jumbotron>
       <h1>접수처</h1>
     </b-jumbotron>
@@ -61,12 +62,13 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { BOARD_LIST } from "@/type/BOARD";
+import {Component, Vue} from 'vue-property-decorator';
+import {BOARD_LIST} from "@/type/BOARD";
 import Board from "@/views/modal/Board.vue";
+import TopBar from "@/components/common/TopBar.vue";
 
 @Component({
-  components:{Board},
+  components:{TopBar, Board},
 })
 export default class BoardList extends Vue{
   boardList?: BOARD_LIST[];

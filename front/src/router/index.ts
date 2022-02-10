@@ -4,12 +4,13 @@ import ChartPage from "@/views/Chart.vue";
 import CatPage from "@/views/Home.vue";
 import Survey from "@/views/Survey.vue";
 import BoardList from "@/views/BoardList.vue";
+import Login from "@/views/user/Login.vue";
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
-    path: '/',
+    path: '/CatPage',
     name: 'CatPage',
     component: CatPage
   },
@@ -33,7 +34,11 @@ const routes: Array<RouteConfig> = [
     path: '/Survey',
     name: 'Survey',
     component: Survey,
-
+  },
+  {
+    path: '/',
+    name: 'Login',
+    component: Login,
   }
 ]
 

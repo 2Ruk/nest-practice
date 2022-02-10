@@ -1,5 +1,6 @@
 <template>
   <div>
+    <TopBar/>
     <b-jumbotron bg-variant="light">
       <template #header>
         <p>REPORT PAGE</p>

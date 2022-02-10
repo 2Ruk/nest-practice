@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <TopBar/>
     <b-jumbotron>
         <p class="h2">
           LIST PAGE
