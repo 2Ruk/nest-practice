@@ -62,7 +62,7 @@
   </div>
 </template>
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator';
+import  {Component, Vue} from 'vue-property-decorator';
 import {BOARD_LIST} from "@/type/BOARD";
 import Board from "@/views/modal/Board.vue";
 import TopBar from "@/components/common/TopBar.vue";

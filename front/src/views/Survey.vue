@@ -50,7 +50,7 @@
 </template>`
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import {optionValue, surveyContent, SurveyType} from "@/type/Survey";
 import TopBar from "@/components/common/TopBar.vue";
 

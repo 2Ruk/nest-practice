@@ -1,11 +1,12 @@
 <template>
-  <div class="vh-100 bg-primary d-flex align-items-center justify-content-center">
+  <div class="vh-100 bg-warning d-flex align-items-center justify-content-center">
+
     <b-form-group class="bg-white h-50 w-50 m-0 p-5 shadow">
       <template #default>
         <!-- 로그인 텍스트 -->
         <b-row class="p-3">
           <b-col cols="12">
-            <b-card-title class="m-0">로그인</b-card-title>
+            <b-card-title class="m-0" >로그인</b-card-title>
           </b-col>
         </b-row>
         <!-- 로그인 텍스트 -->
@@ -25,7 +26,7 @@
               <template #default>
                 <b-input-group>
                   <template #default>
-                    <b-input type="text"></b-input>
+                    <b-input type="text" v-model="userInfo.userId" @keyup.enter="focusPw"></b-input>
                   </template>
                 </b-input-group>
               </template>
@@ -49,7 +50,7 @@
               <template #default>
                 <b-input-group>
                   <template #default>
-                    <b-input type="text"></b-input>
+                    <b-input type="password" ref="pwInput" @keyup.enter="login" v-model="userInfo.userPw"></b-input>
                   </template>
                 </b-input-group>
               </template>
@@ -61,7 +62,7 @@
         <!-- 로그인 버튼 -->
         <b-row class="p-3 justify-content-md-center">
           <b-col cols="6">
-            <b-button class="p-4 w-100" variant="outline-primary">
+            <b-button class="p-4 w-100" variant="outline-primary" @click="login">
               <p class=" m-0 font-weight-bold">
                 L O G I N
               </p>
@@ -77,20 +78,49 @@
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
-
+import {IUser, userInit} from "@/type/user";
 
 @Component({
   components: {},
 })
 export default class Login extends Vue {
+  private userInfo:IUser = userInit();
+  private userPwConfirm: string;
+
+  private idOk: boolean;
+  private pwOk: boolean;
+
+  $refs!:{
+    pwInput:HTMLElement
+  }
+
 
 
   constructor() {
     super();
+    this.userPwConfirm = '';
+    this.idOk = false;
+    this.pwOk = false;
   }
 
   async created() {
 
+  }
+
+  async login(){
+    const userInfo = this.userInfo;
+    console.log({userInfo});
+
+
+
+  }
+
+  async focusPw(){
+    this.$refs.pwInput.focus();
+  }
+
+  get isEqualPassword():boolean{
+    return this.userInfo.userPw === this.userPwConfirm;
   }
 
 

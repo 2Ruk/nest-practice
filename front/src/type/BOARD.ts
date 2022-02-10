@@ -15,3 +15,5 @@ export const DEFAULT_BOARD_LIST: BOARD_LIST[] = [{
     title:'',
     writer:'',
 }]
+
+

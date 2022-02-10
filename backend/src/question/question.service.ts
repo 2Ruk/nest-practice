@@ -13,9 +13,10 @@ export class QuestionService {
       @InjectModel(Question.name) private questionModel: Model<QuestionDocument>,
       @InjectModel(Answer.name) private answerModel: Model<AnswerDocument>,
       private commonService: CommonService
-  ) {}
+  ) {
+  }
 
-  async answerBatchCreate(createQuestionDto: CreateQuestionDto[]){
+  async answerBatchCreate(createQuestionDto: CreateQuestionDto[]) {
     const answer: Partial<Answer> = {
       Q1: '',
       Q2: '',
@@ -25,8 +26,8 @@ export class QuestionService {
       userId: 'tester',
     }
 
-    for(const question of createQuestionDto){
-      answer[question.qName]  = question.answer
+    for (const question of createQuestionDto) {
+      answer[question.qName] = question.answer
     }
 
     return answer;
@@ -36,18 +37,18 @@ export class QuestionService {
     const answer = await this.answerBatchCreate(createQuestionDto);
     const questionInsert = await new this.questionModel({questions: createQuestionDto}).save();
     const answerInsert = await new this.answerModel(answer).save();
-    if(!questionInsert||!answerInsert) throw new Error('등록 실패');
+    if (!questionInsert || !answerInsert) throw new Error('등록 실패');
     return 'This action adds a new question';
   }
 
   async findAll() {
     await this.commonService.test();
     const $group = {
-      _id:'$status',
-      Q1: {$avg:{$multiply:[{$toInt:"$Q1"},20]}},
-      Q2: {$avg:{$multiply:[{$toInt:"$Q2"},20]}},
-      Q3: {$avg:{$multiply:[{$toInt:"$Q3"},20]}},
-      Q4: {$avg:{$multiply:[{$toInt:"$Q4"},20]}}
+      _id: '$status',
+      Q1: {$avg: {$multiply: [{$toInt: "$Q1"}, 20]}},
+      Q2: {$avg: {$multiply: [{$toInt: "$Q2"}, 20]}},
+      Q3: {$avg: {$multiply: [{$toInt: "$Q3"}, 20]}},
+      Q4: {$avg: {$multiply: [{$toInt: "$Q4"}, 20]}}
     }
 
     const [getAvgData] = await this.answerModel.aggregate([{$group}]).exec();

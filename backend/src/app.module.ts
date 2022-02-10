@@ -43,4 +43,5 @@ import {Cat} from './lib/COLLECTION_FEATURE/cat/schema/cat.schema';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+}

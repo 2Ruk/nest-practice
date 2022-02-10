@@ -12,8 +12,15 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  @Get()
-  findAll() {
-    return this.userService.findAll();
+  @Post()
+  findAll(@Body() body) {
+    console.log(body)
+    // return this.userService.findAll();
   }
+
+  // @Get()
+  // findAll(@Body() body) {
+  //   console.log(body)
+  //   // return this.userService.findAll();
+  // }
 }
