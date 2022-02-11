@@ -13,30 +13,10 @@ import {Cat} from './lib/COLLECTION_FEATURE/cat/schema/cat.schema';
       connectionName: 'Cat',
       useFactory: () => ({
         uri: 'mongodb+srv://hychoi:2613@hy.lgpix.mongodb.net/Cat',
-      }),
-      inject: [ConfigService],
-    }),
-    MongooseModule.forRootAsync({
-      imports: [ConfigModule],
-      connectionName: 'Question',
-      useFactory: () => ({
-        uri: 'mongodb+srv://hychoi:2613@hy.lgpix.mongodb.net/Cat',
-      }),
-      inject: [ConfigService],
-    }),
-    MongooseModule.forRootAsync({
-      imports: [ConfigModule],
-      connectionName: 'Answer',
-      useFactory: () => ({
-        uri: 'mongodb+srv://hychoi:2613@hy.lgpix.mongodb.net/Cat',
-      }),
-      inject: [ConfigService],
-    }),
-    MongooseModule.forRootAsync({
-      imports: [ConfigModule],
-      connectionName: 'User',
-      useFactory: () => ({
-        uri: 'mongodb+srv://hychoi:2613@hy.lgpix.mongodb.net/Cat',
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
       }),
       inject: [ConfigService],
     }),
