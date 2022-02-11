@@ -1,6 +1,6 @@
-import {UserModule} from '../user/user.module';
-import {CatModule} from '../cat/cat.module';
-import {QuestionModule} from "../question/question.module";
+import {UserModule} from '../../user/user.module';
+import {CatModule} from '../../cat/cat.module';
+import {QuestionModule} from "../../question/question.module";
 
 export const MODULE_ALL = [UserModule, CatModule, QuestionModule];
 // export const ROUTES: Routes = [];

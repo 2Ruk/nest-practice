@@ -1,6 +1,6 @@
 import {AsyncModelFactory, Prop, Schema, SchemaFactory,} from '@nestjs/mongoose';
 import {Document} from 'mongoose';
-import {SurveyType} from "../../../../COMMON_TYPE/Survey";
+import {SurveyType} from "../../../COMMON_TYPE/Survey";
 
 export type QuestionDocument = Question & Document;
 

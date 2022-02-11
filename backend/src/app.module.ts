@@ -1,7 +1,7 @@
 import {HttpModule, Module} from '@nestjs/common';
 import {AppController} from './app.controller';
 import {AppService} from './app.service';
-import {MODULE_ALL} from './COMMON_TYPE/ROUJTER';
+import {MODULE_ALL} from './lib/COMMON_TYPE/ROUJTER';
 import {MongooseModule} from '@nestjs/mongoose';
 import {ConfigModule, ConfigService} from '@nestjs/config';
 import {Cat} from './lib/COLLECTION_FEATURE/cat/schema/cat.schema';
@@ -27,6 +27,14 @@ import {Cat} from './lib/COLLECTION_FEATURE/cat/schema/cat.schema';
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       connectionName: 'Answer',
+      useFactory: () => ({
+        uri: 'mongodb+srv://hychoi:2613@hy.lgpix.mongodb.net/Cat',
+      }),
+      inject: [ConfigService],
+    }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      connectionName: 'User',
       useFactory: () => ({
         uri: 'mongodb+srv://hychoi:2613@hy.lgpix.mongodb.net/Cat',
       }),

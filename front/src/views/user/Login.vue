@@ -85,10 +85,6 @@ import {IUser, userInit} from "@/type/user";
 })
 export default class Login extends Vue {
   private userInfo:IUser = userInit();
-  private userPwConfirm: string;
-
-  private idOk: boolean;
-  private pwOk: boolean;
 
   $refs!:{
     pwInput:HTMLElement
@@ -98,9 +94,6 @@ export default class Login extends Vue {
 
   constructor() {
     super();
-    this.userPwConfirm = '';
-    this.idOk = false;
-    this.pwOk = false;
   }
 
   async created() {
@@ -109,7 +102,13 @@ export default class Login extends Vue {
 
   async login(){
     const userInfo = this.userInfo;
-    console.log({userInfo});
+
+    const { data } = await Vue.axios({
+      url: 'user/login',
+      method: 'post',
+      data: userInfo
+    });
+
 
 
 
@@ -119,13 +118,9 @@ export default class Login extends Vue {
     this.$refs.pwInput.focus();
   }
 
-  get isEqualPassword():boolean{
-    return this.userInfo.userPw === this.userPwConfirm;
-  }
 
 
   async cancel() {
-
   }
 
 }
