@@ -10,8 +10,14 @@ import * as crypto from 'crypto'
 export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  async create(createUserDto: CreateUserDto):Promise<{str:string, message: string}> {
-    return {str:'',message:''}
+  async create(createUserDto: CreateUserDto) {
+    const newUser =  {
+      ...createUserDto,
+      userPw: this.hashPassword(createUserDto.userPw)
+    } as CreateUserDto;
+    console.log(newUser)
+    const userInfo = new this.userModel(newUser).save();
+    return userInfo;
   }
 
   test() {
@@ -25,8 +31,12 @@ export class UserService {
     // return '여기다.'
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: string,pw:string) {
+    console.log({id,pw})
+    return {
+      userId: 'hychoi',
+      userName:'hychoi'
+    }
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
@@ -41,3 +51,4 @@ export class UserService {
     return crypto.createHash('sha512').update(userPwd).digest('hex').toString();
   }
 }
+
