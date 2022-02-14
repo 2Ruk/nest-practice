@@ -9,7 +9,7 @@ export class AppController {
 
   @Get()
   async getDocs() {
-    const a = await this.appService.getHello();
+    // const a = await this.appService.getHello();
 
     console.log('a');
 
