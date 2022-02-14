@@ -4,6 +4,7 @@ import {UpdateUserDto} from './dto/update-user.dto';
 import {InjectModel} from '@nestjs/mongoose';
 import {Model} from 'mongoose';
 import {User, UserDocument} from "../lib/COLLECTION_FEATURE/user/schema/user.schema";
+import * as crypto from 'crypto'
 
 @Injectable()
 export class UserService {
@@ -34,5 +35,9 @@ export class UserService {
 
   remove(id: number) {
     return `This action removes a #${id} user`;
+  }
+
+  private hashPassword(userPwd: string): string {
+    return crypto.createHash('sha512').update(userPwd).digest('hex').toString();
   }
 }
