@@ -15,7 +15,6 @@ export class UserService {
       ...createUserDto,
       userPw: this.hashPassword(createUserDto.userPw)
     } as CreateUserDto;
-    console.log(newUser)
     const userInfo = new this.userModel(newUser).save();
     return userInfo;
   }

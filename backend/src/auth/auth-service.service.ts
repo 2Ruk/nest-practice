@@ -6,21 +6,17 @@ import * as crypto from 'crypto'
 
 @Injectable()
 export class AuthService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {
+  }
 
-  async validateUser(userId: string, userPw: string){
-    console.log({userId, userPw})
-    const user = await this.userModel.findOne({
+  private hashPassword = (userPwd: string): string => crypto.createHash('sha512').update(userPwd).digest('hex').toString();
+
+  async validateUser(userId: string, userPw: string) {
+    return this.userModel.findOne({
       userId: userId,
-      userPw:  this.hashPassword(userPw),
-    })
-    // const user = await this.userModel.findOne(userId,userPw);
-    console.log('user',user)
-    return true;
+      userPw: this.hashPassword(userPw),
+    });
   }
 
-  private hashPassword(userPwd: string): string {
-    return crypto.createHash('sha512').update(userPwd).digest('hex').toString();
-  }
 }
 

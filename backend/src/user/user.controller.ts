@@ -17,8 +17,8 @@ export class UserController {
   @UseGuards(AuthGuard('local'))
   @Post('/login')
   findAll(@Body() body) {
-    // console.log(body)
     console.log(body)
+    // console.log(body)
     // return this.userService.test();
   }
 

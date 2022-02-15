@@ -104,10 +104,11 @@ export default class Login extends Vue {
     const userInfo = this.userInfo;
 
     const { data } = await Vue.axios({
-      url: 'user/login',
+      url: '/user/login',
       method: 'post',
       data: userInfo
     });
+    console.log(data);
 
 
 
