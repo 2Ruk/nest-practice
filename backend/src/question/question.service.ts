@@ -67,4 +67,148 @@ export class QuestionService {
   remove(id: number) {
     return `This action removes a #${id} question`;
   }
+
+
+
+
+  /**
+   * BACK UP
+   * @param sNum
+   */
+  // async queryBackup(sNum:number){
+  //   try {
+  //     const match = {$match: {_id: sNum}}
+  //     const projectSetName = {
+  //       $project: {
+  //         _id: 0,
+  //         "DATA.TYPE": 1,
+  //         "DATA.NAME": 1,
+  //         "DATA.ANSWERS": 1,
+  //         "DATA.V": 1,
+  //         "DATA.H": 1
+  //       }
+  //     }
+  //     const unwind = {$unwind: {path: "$DATA"}};
+  //     const group = {
+  //       $group:
+  //           {
+  //             _id: "$DATA.NAME",
+  //             NAME: {'$last': "$DATA.NAME"},
+  //             TYPE: {'$last': "$DATA.TYPE"},
+  //             ANSWERS: {'$last': "$DATA.ANSWERS"},
+  //             V: {'$last': "$DATA.V"},
+  //             H: {'$last': "$DATA.H"},
+  //           }
+  //     }
+  //     const projectSetRowCol = {
+  //       $project:
+  //           {
+  //             _id: 0,
+  //             NAME: 1,
+  //             TYPE: 1,
+  //             ROW_CNT: {
+  //               $cond: [
+  //                 {$ne: ["$TYPE", 'GRADE_CLICK']},
+  //                 {
+  //                   $cond: [
+  //                     {$ne: ["$V", null]}, {$size: "$V"},
+  //                     {$cond: [{$ne: ["$ANSWERS", null]}, 1, 0]}]
+  //                 },
+  //                 1
+  //               ],
+  //             },
+  //             COL_CNT: {
+  //               $cond: [
+  //                 {$ne: ["$TYPE", 'GRADE_CLICK']},
+  //                 {
+  //                   $cond: [
+  //                     {$ne: ["$ANSWERS", null]},
+  //                     {$size: "$ANSWERS"},
+  //                     {$cond: [{$ne: ["$H", null]}, {$size: "$H"}, 0]}
+  //                   ]
+  //                 },
+  //                 {$size: "$V"}
+  //               ],
+  //             },
+  //             ROW_LABEL: {
+  //               $cond: [
+  //                 {$ne: ["$TYPE", 'GRADE_CLICK']},
+  //                 {
+  //                   $cond: [{$ne: ["$V", null]}, {
+  //                     TEXT: "$V.V",
+  //                     KEY: "$V.K"
+  //                   }, {$cond: [{$ne: ["$ANSWERS", null]}, {TEXT: "$ANSWERS.V", KEY: "$ANSWERS.K"}, []]}]
+  //                 },
+  //                 []
+  //               ],
+  //             },
+  //             COL_LABEL: {
+  //               $cond: [
+  //                 {$ne: ["$TYPE", 'GRADE_CLICK']},
+  //                 {
+  //                   $cond: [
+  //                     {$ne: ["$ANSWERS", null]},
+  //                     {TEXT: "$ANSWERS.V", KEY: "$ANSWERS.K"},
+  //                     {
+  //                       $cond: [
+  //                         {$ne: ["$H", null]},
+  //                         {TEXT: "$H.V", KEY: "$H.K"},
+  //                         []
+  //                       ]
+  //                     }
+  //                   ]
+  //                 },
+  //                 {TEXT: "$V.V", KEY: "$V.K"}
+  //               ],
+  //             },
+  //           }
+  //     }
+  //
+  //     return await this.svyInfoModel.aggregate([match, projectSetName, unwind, group, projectSetRowCol]);
+  //   } catch (e) {
+  //     throw new Error(`Answer 정보를 불러오는데 실패 하였습니다: ${e}`);
+  //   }
+  // }
+
+  // async getCompleteDataParse(completeList: AnswerCompleteDto[], questionType: QuestionMatchTypeDto[]): Promise<AnswerAddTypeDto[][]> {
+  //   return completeList.map((answerInfo) => {
+  //     const {DATA} = answerInfo;
+  //
+  //     return DATA.map((data) => {
+  //       const {NAME} = data
+  //       const {TYPE,COL_CNT,ROW_CNT,ROW_LABEL,COL_LABEL} = questionType.find((filterValue) => filterValue.NAME === NAME);
+  //       const answerKeys = Object.keys(data);
+  //
+  //       const questionValues = answerKeys.filter((keyItem) => {
+  //         const keyChangeDashToDat = keyItem.replace('_', '.');
+  //         return !isNaN(Number(keyChangeDashToDat));
+  //       });
+  //
+  //       const returnData: { [key: string]: any } = {};
+  //
+  //       if (questionValues.length) {
+  //         questionValues.forEach((keyItem) => {
+  //           returnData[keyItem] = data[keyItem];
+  //         })
+  //       }
+  //
+  //       return {
+  //         ...returnData,
+  //         NAME,
+  //         TYPE,
+  //         COL_CNT,
+  //         ROW_CNT,
+  //         ROW_LABEL,
+  //         COL_LABEL
+  //
+  //       }
+  //     });
+  //
+  //   }) as AnswerAddTypeDto[][];
+  // }
+
+
+
+
+
 }
