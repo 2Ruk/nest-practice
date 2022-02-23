@@ -78,9 +78,11 @@
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
 import {CAT_BACKEND, CAT_TYPE} from "@/type/CAT";
+import TopBar from "@/components/common/TopBar.vue";
 
 @Component({
   components: {
+    TopBar
   },
 })
 export default class CatPage extends Vue {

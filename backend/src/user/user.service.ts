@@ -22,7 +22,8 @@ export class UserService {
   test() {
     const createCatDto:User = {
       userId:'hy',
-      userPw: '123'
+      userPw: '123',
+      userName: 'test'
     };
     const createdCat = new this.userModel(createCatDto);
 

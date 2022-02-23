@@ -1,4 +1,4 @@
-import {Body, Controller, Post, UseGuards,} from '@nestjs/common';
+import {Body, Controller, Post, Req, UseGuards,} from '@nestjs/common';
 import {UserService} from './user.service';
 import {CreateUserDto} from './dto/create-user.dto';
 import {AuthGuard} from "@nestjs/passport";
@@ -9,22 +9,20 @@ export class UserController {
 
   @Post('register')
   async create(@Body() createUserDto: CreateUserDto) {
-    // const test = await this.userService.create(createUserDto);
     return this.userService.create(createUserDto);
   }
 
 
   @UseGuards(AuthGuard('local'))
   @Post('/login')
-  findAll(@Body() body) {
-    console.log(body)
-    // console.log(body)
-    // return this.userService.test();
+  findAll(@Req() req) {
+    const {user} = req;
+    const { userId, userName } = user;
+    return {
+      userId,
+      userName,
+      token: 'ds',
+    };
   }
 
-  // @Get()
-  // findAll(@Body() body) {
-  //   console.log(body)
-  //   // return this.userService.findAll();
-  // }
 }

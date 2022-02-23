@@ -47,11 +47,13 @@
 <script lang="ts">
 import {Component, Ref, Vue} from 'vue-property-decorator';
 import {Chart, ChartConfiguration, registerables} from 'chart.js';
+import TopBar from "@/components/common/TopBar.vue";
 
 Chart.register(...registerables);
 
 @Component({
   components: {
+    TopBar
   },
 })
 export default class ChartPage extends Vue {

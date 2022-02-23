@@ -6,12 +6,14 @@ export type UserDocument = User & Document;
 @Schema()
 export class User {
 
-
   @Prop()
   userId: string;
 
   @Prop()
   userPw: string;
+
+  @Prop()
+  userName: string;
 
   @Prop({ default: new Date() })
   createDate?: Date;
