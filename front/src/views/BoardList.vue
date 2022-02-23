@@ -30,23 +30,23 @@
         </b-col>
       </b-row>
 
-      <b-table-simple  class="mt-2">
+      <b-table-simple class="mt-2">
         <b-thead>
           <b-tr>
             <b-th width="10%">NO</b-th>
             <b-th width="40%">TITLE</b-th>
             <b-th width="25%">WRITER</b-th>
-<!--            <b-th width="20%">BREED</b-th>-->
+            <!--            <b-th width="20%">BREED</b-th>-->
             <b-th width="25%">WRITE DATE</b-th>
           </b-tr>
         </b-thead>
         <b-tbody v-if="boardList.length">
           <b-tr v-for="(board,idx) in boardList" :key="`boardList-${idx}`">
-            <b-td>{{idx}}</b-td>
-            <b-td>{{board.title}}</b-td>
-            <b-td>{{board.writer}}</b-td>
-<!--            <b-td>{{board.breed}}</b-td>-->
-            <b-td>{{board.createDate}}</b-td>
+            <b-td>{{ idx }}</b-td>
+            <b-td>{{ board.title }}</b-td>
+            <b-td>{{ board.writer }}</b-td>
+            <!--            <b-td>{{board.breed}}</b-td>-->
+            <b-td>{{ board.createDate }}</b-td>
           </b-tr>
         </b-tbody>
         <b-tbody v-else>
@@ -58,29 +58,31 @@
         </b-tbody>
       </b-table-simple>
     </b-container>
-    <Board />
+    <Board/>
   </div>
 </template>
 <script lang="ts">
-import  {Component, Vue} from 'vue-property-decorator';
+import {Component, Vue} from 'vue-property-decorator';
 import {BOARD_LIST} from "@/type/BOARD";
 import Board from "@/views/modal/Board.vue";
 import TopBar from "@/components/common/TopBar.vue";
 
 @Component({
-  components:{TopBar, Board},
+  components: {TopBar, Board},
 })
-export default class BoardList extends Vue{
+export default class BoardList extends Vue {
   boardList?: BOARD_LIST[];
 
   constructor() {
     super();
     this.boardList = [];
   }
-  async openModal(){
+
+  async openModal() {
     await this.$bvModal.show('boardModal')
   }
-  async writeBoard(){
+
+  async writeBoard() {
     console.log('a');
   }
 

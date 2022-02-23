@@ -8,10 +8,11 @@ import * as crypto from 'crypto'
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {
+  }
 
   async create(createUserDto: CreateUserDto) {
-    const newUser =  {
+    const newUser = {
       ...createUserDto,
       userPw: this.hashPassword(createUserDto.userPw)
     } as CreateUserDto;
@@ -20,8 +21,8 @@ export class UserService {
   }
 
   test() {
-    const createCatDto:User = {
-      userId:'hy',
+    const createCatDto: User = {
+      userId: 'hy',
       userPw: '123',
       userName: 'test'
     };
@@ -31,11 +32,11 @@ export class UserService {
     // return '여기다.'
   }
 
-  async findOne(id: string,pw:string) {
-    console.log({id,pw})
+  async findOne(id: string, pw: string) {
+    console.log({id, pw})
     return {
       userId: 'hychoi',
-      userName:'hychoi'
+      userName: 'hychoi'
     }
   }
 

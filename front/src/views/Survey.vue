@@ -17,7 +17,7 @@
               <b-row>
                 <b-col cols="12" class="p-5 question-desc">
                   <p class="h5">
-                    {{question.qName }}. {{question.desc}}
+                    {{ question.qName }}. {{ question.desc }}
                   </p>
                 </b-col>
               </b-row>
@@ -50,7 +50,7 @@
 </template>`
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import {Component, Vue} from 'vue-property-decorator';
 import {optionValue, surveyContent, SurveyType} from "@/type/Survey";
 import TopBar from "@/components/common/TopBar.vue";
 
@@ -71,25 +71,25 @@ export default class Survey extends Vue {
     this.questions = [...surveyContent]
   }
 
-  async created(){
+  async created() {
 
   }
 
-  async submit(){
-    const isCheck =  await this.validate();
-    if(isCheck){
+  async submit() {
+    const isCheck = await this.validate();
+    if (isCheck) {
       const sendData = {
         Question: this.questions
       }
 
-      const { data } = await Vue.axios({
+      const {data} = await Vue.axios({
         url: '/question',
         method: 'POST',
         data: sendData
       });
 
       console.log(data);
-    }else{
+    } else {
       Vue.$toast.open({
         message: '아직 체크를 덜 하였습니다.',
         type: 'error',
@@ -98,23 +98,23 @@ export default class Survey extends Vue {
     }
   }
 
-  async cancel(){
+  async cancel() {
 
   }
 
 
-  allCheck(){
-    return this.questions.filter(e => e?.answer).length===this.questions.length
+  allCheck() {
+    return this.questions.filter(e => e?.answer).length === this.questions.length
   };
 
-  async validate(){
+  async validate() {
     return this.allCheck();
   };
 }
 </script>
 
 <style scoped>
-.question-desc{
+.question-desc {
   background-color: #e9ecef;
 }
 </style>

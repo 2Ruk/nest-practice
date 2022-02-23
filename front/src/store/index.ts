@@ -20,7 +20,7 @@ export default new Vuex.Store({
       state.isLogin = true;
     },
     logout(state) {
-      state.isLogin= false;
+      state.isLogin = false;
       state.token = null;
       state.userId = null;
       state.userName = null;
@@ -38,7 +38,7 @@ export default new Vuex.Store({
         data: userInfo
       });
       const {userId, userName, token} = data
-      if(userId) commit('login', {token, userName, userId})
+      if (userId) commit('login', {token, userName, userId})
     },
     async logout({commit}) {
       commit('logout')

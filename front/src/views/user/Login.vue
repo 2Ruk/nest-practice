@@ -6,7 +6,7 @@
         <!-- 로그인 텍스트 -->
         <b-row class="p-3">
           <b-col cols="12">
-            <b-card-title class="m-0" >로그인</b-card-title>
+            <b-card-title class="m-0">로그인</b-card-title>
           </b-col>
         </b-row>
         <!-- 로그인 텍스트 -->
@@ -84,49 +84,48 @@ import {IUser, userInit} from "@/type/user";
   components: {},
 })
 export default class Login extends Vue {
-  private userInfo:IUser = userInit();
+  private userInfo: IUser = userInit();
 
-  $refs!:{
-    pwInput:HTMLElement
+  $refs!: {
+    pwInput: HTMLElement
   }
 
   constructor() {
     super();
   }
 
-
-
   async created() {
     const isLogin = this.$store.getters.isLogin;
-    if (isLogin) this.$router.push('/chart').catch(err => {})
+    if (isLogin) this.$router.push('/chart').catch(err => {
+    })
   }
 
-  validate():boolean{
+  validate(): boolean {
     const idValidate = !!this.userInfo.userId;
     const pwValidate = !!this.userInfo.userPw;
 
     return !(!idValidate || !pwValidate);
   }
 
-  async login(){
+  async login() {
 
     const isInput = this.validate();
 
-    if(!isInput){
+    if (!isInput) {
       this.$toast.error('입력하지 않은 부분이 있습니다.');
       return;
     }
 
     const userInfo = this.userInfo;
-    await this.$store.dispatch('login',userInfo)
-    await this.$router.push('/chart').catch(err => {})
+    await this.$store.dispatch('login', userInfo)
+    await this.$router.push('/chart').catch(err => {
+    })
 
   }
 
-  async focusPw(){
+  async focusPw() {
     this.$refs.pwInput.focus();
   }
-
 
 
   async cancel() {

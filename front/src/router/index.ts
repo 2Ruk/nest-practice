@@ -6,39 +6,40 @@ import Survey from "@/views/Survey.vue";
 import BoardList from "@/views/BoardList.vue";
 import Login from "@/views/user/Login.vue";
 import Store from "../store/index";
+
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
     path: '/CatPage',
     name: 'CatPage',
-    meta : {
-      userAuth:true,
+    meta: {
+      userAuth: true,
     },
     component: CatPage
   },
   {
     path: '/BoardList',
     name: 'BoardList',
-    meta : {
-      userAuth:true,
+    meta: {
+      userAuth: true,
     },
     component: BoardList,
   },
   {
     path: '/chart',
     name: 'Chart',
-    meta : {
-      userAuth:true,
+    meta: {
+      userAuth: true,
     },
     component: ChartPage
   },
   {
-    path:'/chart/:id',
-    name : 'Chart1',
+    path: '/chart/:id',
+    name: 'Chart1',
     component: ChartPage,
-    meta : {
-      userAuth:true,
+    meta: {
+      userAuth: true,
     },
     props: true
   },
@@ -46,8 +47,8 @@ const routes: Array<RouteConfig> = [
     path: '/Survey',
     name: 'Survey',
     component: Survey,
-    meta : {
-      userAuth:true,
+    meta: {
+      userAuth: true,
     }
   },
   {
@@ -63,13 +64,13 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach(async(to, from, next)=>{
-  const { matched }=to;
-  const userAuth = matched.some(({meta})=>meta.userAuth) ;
+router.beforeEach(async (to, from, next) => {
+  const {matched} = to;
+  const userAuth = matched.some(({meta}) => meta.userAuth);
 
-  if(userAuth){
+  if (userAuth) {
     const isLogin = await Store.getters.isLogin;
-    if(!isLogin) return next('/')
+    if (!isLogin) return next('/')
   }
   return next();
 })

@@ -3,7 +3,8 @@ import {Injectable} from '@nestjs/common';
 
 @Injectable()
 export class AppService {
-  constructor() {}
+  constructor() {
+  }
 
   // async getHello(): Promise<any> {
   //   const nickName = encodeURI('반ㅋ반ㅋ치ㅋ킨ㅋ');

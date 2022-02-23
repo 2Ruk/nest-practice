@@ -1,10 +1,10 @@
-export interface IUser{
+export interface IUser {
   userId: string
   userPw: string;
 }
 
-export function userInit():IUser{
-  return{
+export function userInit(): IUser {
+  return {
     userId: '',
     userPw: '',
   }

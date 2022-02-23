@@ -5,7 +5,8 @@ import {AuthGuard} from "@nestjs/passport";
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) {
+  }
 
   @Post('register')
   async create(@Body() createUserDto: CreateUserDto) {
@@ -17,7 +18,7 @@ export class UserController {
   @Post('/login')
   findAll(@Req() req) {
     const {user} = req;
-    const { userId, userName } = user;
+    const {userId, userName} = user;
     return {
       userId,
       userName,

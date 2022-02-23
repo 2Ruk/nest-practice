@@ -19,16 +19,22 @@
                 </b-thead>
                 <b-tbody v-if="!isPending">
                   <b-tr v-for="(val,idx) in tableData" :key="val.description+idx">
-                    <b-td>{{val.qName}}</b-td>
-                    <b-td>{{val.description}}</b-td>
-                    <b-td>{{val.questionAvg}}%</b-td>
+                    <b-td>{{ val.qName }}</b-td>
+                    <b-td>{{ val.description }}</b-td>
+                    <b-td>{{ val.questionAvg }}%</b-td>
                   </b-tr>
                 </b-tbody>
                 <b-tbody v-else>
                   <b-tr v-for="i in 4" :key="`skeleton_${i}`">
-                    <b-td><b-skeleton/></b-td>
-                    <b-td><b-skeleton/></b-td>
-                    <b-td><b-skeleton/></b-td>
+                    <b-td>
+                      <b-skeleton/>
+                    </b-td>
+                    <b-td>
+                      <b-skeleton/>
+                    </b-td>
+                    <b-td>
+                      <b-skeleton/>
+                    </b-td>
                   </b-tr>
                 </b-tbody>
               </b-table-simple>
@@ -60,32 +66,36 @@ export default class ChartPage extends Vue {
   // $refs!: {
   //   myChart: HTMLCanvasElement
   // }
-  test(t:string='0'){
+  test(t: string = '0') {
 
   }
-  @Ref() myChart!:  HTMLCanvasElement;
+
+  @Ref() myChart!: HTMLCanvasElement;
   chartData: number[];
   chartLabel: string[];
   chartQuestionDescription: string[];
-  tableData: {qName:string, description:string, questionAvg:number}[];
+  tableData: { qName: string, description: string, questionAvg: number }[];
   isPending: boolean
 
   constructor() {
     super();
     this.chartData = [];
     this.chartLabel = [];
-    this.chartQuestionDescription = ['2021년 목표를 설정하였나요?','2021년 목표를 달성하셨나요?','행복한 2021년 이였나요?','2022년 계획을 설정하였나요?'];;
+    this.chartQuestionDescription = ['2021년 목표를 설정하였나요?', '2021년 목표를 달성하셨나요?', '행복한 2021년 이였나요?', '2022년 계획을 설정하였나요?'];
+    ;
     this.tableData = [];
     this.isPending = true;
   }
-  async created(){
+
+  async created() {
     await this.getChartData();
     await this.draw();
     await this.tableDataSet();
   }
-  async tableDataSet(){
-    this.chartLabel.forEach((value,idx)=>{
-      const chartData:{qName:string, description:string, questionAvg:number} = {
+
+  async tableDataSet() {
+    this.chartLabel.forEach((value, idx) => {
+      const chartData: { qName: string, description: string, questionAvg: number } = {
         qName: value,
         description: this.chartQuestionDescription[idx],
         questionAvg: +this.chartData[idx].toFixed(2),
@@ -93,13 +103,14 @@ export default class ChartPage extends Vue {
       this.tableData.push(chartData)
     })
   }
-  async getChartData(){
-    const { data } = await Vue.axios({
+
+  async getChartData() {
+    const {data} = await Vue.axios({
       url: 'question',
       method: 'get',
     });
     const {_id, ...chartData} = data.chartData;
-    for(const questionAVG of Object.keys(chartData)){
+    for (const questionAVG of Object.keys(chartData)) {
       this.chartLabel.push(questionAVG);
       this.chartData.push(chartData[questionAVG]);
     }
@@ -112,7 +123,7 @@ export default class ChartPage extends Vue {
     const options: ChartConfiguration = {
       type: 'bar',
       data: {
-        labels:this.chartLabel,
+        labels: this.chartLabel,
         datasets: [{
           label: '# of Votes',
           data: this.chartData,
@@ -134,14 +145,14 @@ export default class ChartPage extends Vue {
         }]
       },
       options: {
-        responsive:false,
+        responsive: false,
       }
     }
-    await this.drawChart(ctx,options);
+    await this.drawChart(ctx, options);
   }
 
-  async drawChart(canvas: HTMLCanvasElement,options: ChartConfiguration){
-    const chart = await new Chart(canvas,options)
+  async drawChart(canvas: HTMLCanvasElement, options: ChartConfiguration) {
+    const chart = await new Chart(canvas, options)
   }
 
 }
