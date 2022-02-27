@@ -1,5 +1,5 @@
 <template>
-  <div class="vh-100 bg-warning d-flex align-items-center justify-content-center">
+  <div class="vh-100 bg-warning d-flex align-items-center justify-content-center back-gradient">
 
     <b-form-group class="bg-white shadow login-form-min-width login-form-defaultSetting login-form-max-width">
       <template #default>
@@ -40,8 +40,7 @@
           <b-col cols="8">
             <b-form-group
                 label-align="left"
-                label-cols="2"
-            >
+                label-cols="2">
               <template #label>
                 <b-form-text>
                   PW
@@ -62,7 +61,7 @@
         <!-- 로그인 버튼 -->
         <b-row class="p-3 justify-content-center" align-h="center">
           <b-col cols="8">
-            <b-button class="p-4 w-100" variant="outline-primary" @click="login">
+            <b-button class="p-4 w-100" variant="primary" @click="login">
               <p class=" m-0 font-weight-bold">
                 L O G I N
               </p>
@@ -148,6 +147,12 @@ export default class Login extends Vue {
 </script>
 
 <style scoped>
+.back-gradient{
+  background: linear-gradient(-45deg, #FFBBBB, #FFE4C0, #F2C9E1, #BFFFF0);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
+}
 .login-form-defaultSetting {
   width: 50% !important;
   height: 50% !important;
@@ -167,6 +172,16 @@ export default class Login extends Vue {
   max-width: 1024px !important;
   max-height: 600px !important;
 }
-
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
 </style>
