@@ -99,9 +99,7 @@ export default class Survey extends Vue {
   }
 
   async cancel() {
-
   }
-
 
   allCheck() {
     return this.questions.filter(e => e?.answer).length === this.questions.length

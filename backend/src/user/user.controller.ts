@@ -1,4 +1,4 @@
-import {Body, Controller, Post, Req, UseGuards,} from '@nestjs/common';
+import {Body, Controller, Get, Post, Req, UseGuards,} from '@nestjs/common';
 import {UserService} from './user.service';
 import {CreateUserDto} from './dto/create-user.dto';
 import {AuthGuard} from "@nestjs/passport";
@@ -6,6 +6,14 @@ import {AuthGuard} from "@nestjs/passport";
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {
+  }
+
+  @Get()
+  async test() {
+    return {
+      result: true,
+      message: '안녕'
+    }
   }
 
   @Post('register')

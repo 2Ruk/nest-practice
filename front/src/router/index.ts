@@ -6,6 +6,7 @@ import Survey from "@/views/Survey.vue";
 import BoardList from "@/views/BoardList.vue";
 import Login from "@/views/user/Login.vue";
 import Store from "../store/index";
+import Register from "@/views/user/Register.vue";
 
 Vue.use(VueRouter)
 
@@ -55,6 +56,11 @@ const routes: Array<RouteConfig> = [
     path: '/',
     name: 'Login',
     component: Login,
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register,
   }
 ]
 
@@ -70,7 +76,10 @@ router.beforeEach(async (to, from, next) => {
 
   if (userAuth) {
     const isLogin = await Store.getters.isLogin;
-    if (!isLogin) return next('/')
+    if (!isLogin) {
+      Vue.$toast.error('로그인이 필요한 서비스입니다.')
+      return next('/')
+    }
   }
   return next();
 })
