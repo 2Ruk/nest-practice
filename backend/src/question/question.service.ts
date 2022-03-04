@@ -176,8 +176,7 @@ export class QuestionService {
   //
   //     return DATA.map((data) => {
   //       const {NAME} = data
-  //       const {TYPE,COL_CNT,ROW_CNT,ROW_LABEL,COL_LABEL} = questionType.find((filterValue) => filterValue.NAME === NAME);
-  //       const answerKeys = Object.keys(data);
+  //       const {TYPE,COL_CNT,ROW_CNT,ROW_LABEL,COL_LABEL} = questionType.find((filterValue) => filterValue.NAME === NAME); const answerKeys = Object.keys(data);
   //
   //       const questionValues = answerKeys.filter((keyItem) => {
   //         const keyChangeDashToDat = keyItem.replace('_', '.');
