@@ -3,9 +3,10 @@ import {CreateQuestionDto} from './dto/create-question.dto';
 import {UpdateQuestionDto} from './dto/update-question.dto';
 import {InjectModel} from "@nestjs/mongoose";
 import {Model} from "mongoose";
-import {Question, QuestionDocument} from "../lib/COLLECTION_FEATURE/question/schema/question.schema";
-import {Answer, AnswerDocument} from "../lib/COLLECTION_FEATURE/answer/schema/answer.schema";
-import {CommonService} from "../lib/common/common.service";
+import {Question, QuestionDocument} from "@api/lib/COLLECTION_FEATURE/question/schema/question.schema";
+import {Answer, AnswerDocument} from "@api/lib/COLLECTION_FEATURE/answer/schema/answer.schema";
+import {CommonService} from "@api/lib/common/common.service";
+
 
 @Injectable()
 export class QuestionService {
@@ -176,7 +177,8 @@ export class QuestionService {
   //
   //     return DATA.map((data) => {
   //       const {NAME} = data
-  //       const {TYPE,COL_CNT,ROW_CNT,ROW_LABEL,COL_LABEL} = questionType.find((filterValue) => filterValue.NAME === NAME); const answerKeys = Object.keys(data);
+  //       const {TYPE,COL_CNT,ROW_CNT,ROW_LABEL,COL_LABEL} = questionType.find((filterValue) => filterValue.NAME === NAME);
+  //       const answerKeys = Object.keys(data);
   //
   //       const questionValues = answerKeys.filter((keyItem) => {
   //         const keyChangeDashToDat = keyItem.replace('_', '.');
