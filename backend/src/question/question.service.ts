@@ -13,8 +13,7 @@ export class QuestionService {
   constructor(
       @InjectModel(Question.name) private questionModel: Model<QuestionDocument>,
       @InjectModel(Answer.name) private answerModel: Model<AnswerDocument>,
-      private commonService: CommonService
-  ) {
+      private commonService: CommonService) {
   }
 
   async answerBatchCreate(createQuestionDto: CreateQuestionDto[]) {
