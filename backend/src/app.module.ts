@@ -11,7 +11,7 @@ import {MODULE_ALL} from "./lib/COMMON_TYPE/ROUJTER";
       imports: [ConfigModule],
       connectionName: 'Cat',
       useFactory: () => ({
-        uri: 'mongodb+srv://hychoi:2613@hy.lgpix.mongodb.net/Cat',
+        uri: '',
         useNewUrlParser: true,
         useUnifiedTopology: true
       }),

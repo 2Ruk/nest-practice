@@ -9,7 +9,7 @@ export class AppService {
   // async getHello(): Promise<any> {
   //   const nickName = encodeURI('반ㅋ반ㅋ치ㅋ킨ㅋ');
   //   const playerId = '52a69e7c3e4bfe73223cff7615990ae3';
-  //   const url = `https://api.neople.co.kr/cy/players?nickname=${nickName}&apikey=HWpkkR1xsWK6cfno15scuGXi8GEAx2UM`;
+  //   const url = `https://api.neople.co.kr/cy/players?nickname=${nickName}&apikey=`;
   //
   //   // const data = this.httpService
   //   //   .get<any>(url)
